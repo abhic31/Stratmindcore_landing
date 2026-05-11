@@ -3,198 +3,294 @@
 <head>
   <title>StratMindCore - Trading Scanner & Journal</title>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="description" content="StratMindCore helps traders find scanner-based trade ideas, track their journal, and plan compounding goals.">
-  <meta name="keywords" content="StratMindCore, trading scanner, trading journal, stock scanner, compounding calculator">
-  <meta name="author" content="StratMindCore">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="description" content="StratMindCore helps traders find scanner-based trade ideas, track their journal, and plan compounding goals." />
+  <meta name="keywords" content="StratMindCore, trading scanner, trading journal, stock scanner, compounding calculator" />
+  <meta name="author" content="StratMindCore" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #070b1f;
+      background: #050816;
       color: #ffffff;
-    }
-
-    .preloader {
-      display: none;
     }
 
     #home {
       min-height: 100vh;
       position: relative;
-      display: flex;
-      align-items: center;
-      background:
-        linear-gradient(135deg, rgba(7, 11, 31, 0.92), rgba(14, 23, 64, 0.88)),
-        url("images/slide-1.jpg") center/cover no-repeat;
       overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(35, 200, 255, 0.22), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(89, 100, 255, 0.18), transparent 35%),
+        linear-gradient(135deg, #050816 0%, #0d1635 45%, #101b45 100%);
     }
 
-    .overlay {
+    .grid-bg {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right, rgba(42, 214, 255, 0.22), transparent 35%);
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 70px 70px;
+      opacity: 0.45;
     }
 
-    .hero-wrap {
+    .container {
+      width: 92%;
+      max-width: 1180px;
+      margin: auto;
       position: relative;
       z-index: 2;
-      max-width: 860px;
-      padding: 40px 15px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #40dfff;
+    }
+
+    .nav-pill {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+      padding: 70px 0 60px;
     }
 
     .brand-badge {
       display: inline-block;
-      padding: 8px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      padding: 9px 16px;
       border-radius: 999px;
       color: #8ee8ff;
-      background: rgba(255, 255, 255, 0.06);
-      margin-bottom: 22px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      margin-bottom: 24px;
       font-size: 14px;
-      letter-spacing: 0.5px;
     }
 
     h1 {
-      font-size: 58px;
-      line-height: 1.08;
-      font-weight: 800;
-      margin: 0 0 22px;
-      letter-spacing: -1.5px;
+      font-size: 64px;
+      line-height: 1.05;
+      margin: 0 0 24px;
+      letter-spacing: -2px;
     }
 
     .highlight {
-      color: #40dfff;
+      background: linear-gradient(135deg, #40dfff, #7c8cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .subtitle {
       font-size: 19px;
       line-height: 1.7;
-      color: rgba(255, 255, 255, 0.78);
-      max-width: 720px;
+      color: rgba(255,255,255,0.75);
+      max-width: 680px;
       margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      display: inline-block;
+      padding: 15px 26px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, #23c8ff, #5964ff);
+      color: #ffffff;
+      box-shadow: 0 18px 45px rgba(35, 200, 255, 0.25);
+    }
+
+    .secondary-btn {
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
     }
 
     .features {
       display: flex;
-      flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 34px;
+      flex-wrap: wrap;
       padding: 0;
       list-style: none;
+      margin: 0;
     }
 
     .features li {
       padding: 11px 15px;
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: rgba(255, 255, 255, 0.9);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.88);
       font-size: 14px;
     }
 
-    .subscribe-form {
-      max-width: 560px;
-      margin-bottom: 18px;
+    .dashboard-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 28px;
+      padding: 24px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 35px 90px rgba(0,0,0,0.35);
     }
 
-    .subscribe-form form {
+    .card-top {
       display: flex;
-      gap: 12px;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 10px;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(10px);
+      justify-content: space-between;
+      margin-bottom: 24px;
     }
 
-    .subscribe-form input {
-      height: 52px;
-      border: 0;
-      border-radius: 12px;
-      padding: 0 18px;
-      color: #111827;
-      font-size: 15px;
-      flex: 1;
+    .card-title {
+      font-size: 18px;
+      font-weight: 800;
     }
 
-    .subscribe-form button {
-      height: 52px;
-      border: 0;
-      border-radius: 12px;
-      padding: 0 24px;
-      background: linear-gradient(135deg, #23c8ff, #5964ff);
-      color: #ffffff;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .small-note {
-      color: rgba(255, 255, 255, 0.58);
+    .live-tag {
+      color: #40dfff;
       font-size: 13px;
     }
 
-    .stats {
+    .scanner-row {
       display: flex;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      margin-bottom: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .scanner-row strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .scanner-row span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .signal {
+      color: #30f2a2;
+      font-weight: 800;
+    }
+
+    .chart-box {
+      height: 160px;
+      margin-top: 20px;
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(35,200,255,0.18), rgba(89,100,255,0.12)),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 28px,
+          rgba(255,255,255,0.05) 29px
+        );
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart-line {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 55%;
+      height: 3px;
+      background: linear-gradient(90deg, #23c8ff, #30f2a2);
+      transform: rotate(-8deg);
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(35,200,255,0.8);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-      margin-top: 42px;
+      padding: 30px 0 45px;
     }
 
     .stat-card {
-      min-width: 160px;
-      padding: 18px 20px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.075);
-      border: 1px solid rgba(255, 255, 255, 0.11);
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
     .stat-card strong {
       display: block;
-      font-size: 24px;
-      color: #ffffff;
-      margin-bottom: 4px;
+      font-size: 28px;
+      margin-bottom: 8px;
     }
 
     .stat-card span {
-      color: rgba(255, 255, 255, 0.65);
-      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      font-size: 14px;
     }
 
     .footer-note {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 22px;
-      z-index: 2;
-      color: rgba(255, 255, 255, 0.48);
+      padding: 20px 0 28px;
+      color: rgba(255,255,255,0.45);
       font-size: 12px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 40px;
+      }
+
       h1 {
-        font-size: 38px;
+        font-size: 42px;
       }
 
       .subtitle {
         font-size: 16px;
       }
 
-      .subscribe-form form {
-        flex-direction: column;
+      .stats {
+        grid-template-columns: 1fr;
       }
 
-      .subscribe-form button {
-        width: 100%;
-      }
-
-      .footer-note {
-        position: relative;
-        bottom: auto;
-        margin-top: 25px;
+      .nav-pill {
+        display: none;
       }
     }
   </style>
@@ -203,56 +299,103 @@
 <body>
 
   <section id="home">
-    <div class="overlay"></div>
+    <div class="grid-bg"></div>
 
     <div class="container">
-      <div class="hero-wrap">
 
-        <div class="brand-badge">StratMindCore · Beta Launch Coming Soon</div>
+      <nav class="navbar">
+        <div class="logo">StratMind<span>Core</span></div>
+        <div class="nav-pill">Beta launch coming soon</div>
+      </nav>
 
-        <h1>
-          Find better trade setups with a <span class="highlight">scanner-first</span> workflow.
-        </h1>
+      <div class="hero">
 
-        <p class="subtitle">
-          StratMindCore helps traders discover scanner-based stock ideas, maintain a trading journal,
-          and track compounding goals — so every trade becomes part of a clear plan.
-        </p>
+        <div class="hero-content">
+          <div class="brand-badge">Scanner · Journal · Compounding Plan</div>
 
-        <ul class="features">
-          <li>Weekly & Daily Scanners</li>
-          <li>Trading Journal</li>
-          <li>Compounding Tracker</li>
-          <li>Performance Insights</li>
-        </ul>
+          <h1>
+            Trade with structure.<br>
+            <span class="highlight">Not emotions.</span>
+          </h1>
 
-        <p class="small-note">
-          Limited beta access for early users. Built for retail traders who want structure, not random trades.
-        </p>
+          <p class="subtitle">
+            StratMindCore helps traders discover scanner-based stock setups,
+            track every trade in a journal, and follow a clear compounding path.
+          </p>
 
-        <div class="stats">
-          <div class="stat-card">
-            <strong>Scanner</strong>
-            <span>Spot market setups faster</span>
+          <div class="hero-buttons">
+            <a href="#" class="primary-btn">Launching Soon</a>
+            <a href="#" class="secondary-btn">Built for Retail Traders</a>
           </div>
 
-          <div class="stat-card">
-            <strong>Journal</strong>
-            <span>Track mistakes and wins</span>
+          <ul class="features">
+            <li>Weekly & Daily Scanners</li>
+            <li>Trading Journal</li>
+            <li>Compounding Tracker</li>
+            <li>Performance Insights</li>
+          </ul>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-top">
+            <div class="card-title">Scanner Preview</div>
+            <div class="live-tag">● Live Signals</div>
           </div>
 
-          <div class="stat-card">
-            <strong>Plan</strong>
-            <span>Know your compounding path</span>
+          <div class="scanner-row">
+            <div>
+              <strong>EMA Breakout Setup</strong>
+              <span>Weekly trend + daily confirmation</span>
+            </div>
+            <div class="signal">Bullish</div>
+          </div>
+
+          <div class="scanner-row">
+            <div>
+              <strong>Journal Insights</strong>
+              <span>Win rate, mistakes, trade review</span>
+            </div>
+            <div class="signal">Track</div>
+          </div>
+
+          <div class="scanner-row">
+            <div>
+              <strong>Compound Goal</strong>
+              <span>Capital target and trade roadmap</span>
+            </div>
+            <div class="signal">Plan</div>
+          </div>
+
+          <div class="chart-box">
+            <div class="chart-line"></div>
           </div>
         </div>
 
       </div>
 
+      <div class="stats">
+        <div class="stat-card">
+          <strong>01</strong>
+          <span>Find scanner-based trade setups faster.</span>
+        </div>
+
+        <div class="stat-card">
+          <strong>02</strong>
+          <span>Record trades and learn from mistakes.</span>
+        </div>
+
+        <div class="stat-card">
+          <strong>03</strong>
+          <span>Track how many trades you need to reach your goal.</span>
+        </div>
+      </div>
+
       <div class="footer-note">
         © 2026 StratMindCore. Educational tools only. Not investment advice.
       </div>
+
     </div>
   </section>
+
 </body>
 </html>
