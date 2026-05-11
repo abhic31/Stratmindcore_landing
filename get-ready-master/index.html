@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>StratMindCore - Trading Scanner & Journal</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="StratMindCore helps traders find scanner-based trade ideas, track their journal, and plan compounding goals.">
+  <meta name="keywords" content="StratMindCore, trading scanner, trading journal, stock scanner, compounding calculator">
+  <meta name="author" content="StratMindCore">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #070b1f;
+      color: #ffffff;
+    }
+
+    .preloader {
+      display: none;
+    }
+
+    #home {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(7, 11, 31, 0.92), rgba(14, 23, 64, 0.88)),
+        url("images/slide-1.jpg") center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(42, 214, 255, 0.22), transparent 35%);
+    }
+
+    .hero-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      padding: 40px 15px;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      color: #8ee8ff;
+      background: rgba(255, 255, 255, 0.06);
+      margin-bottom: 22px;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 58px;
+      line-height: 1.08;
+      font-weight: 800;
+      margin: 0 0 22px;
+      letter-spacing: -1.5px;
+    }
+
+    .highlight {
+      color: #40dfff;
+    }
+
+    .subtitle {
+      font-size: 19px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 720px;
+      margin-bottom: 30px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .features li {
+      padding: 11px 15px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+    }
+
+    .subscribe-form {
+      max-width: 560px;
+      margin-bottom: 18px;
+    }
+
+    .subscribe-form form {
+      display: flex;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(10px);
+    }
+
+    .subscribe-form input {
+      height: 52px;
+      border: 0;
+      border-radius: 12px;
+      padding: 0 18px;
+      color: #111827;
+      font-size: 15px;
+      flex: 1;
+    }
+
+    .subscribe-form button {
+      height: 52px;
+      border: 0;
+      border-radius: 12px;
+      padding: 0 24px;
+      background: linear-gradient(135deg, #23c8ff, #5964ff);
+      color: #ffffff;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .small-note {
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 13px;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .stat-card {
+      min-width: 160px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.075);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 24px;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .stat-card span {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 13px;
+    }
+
+    .footer-note {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 22px;
+      z-index: 2;
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 38px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .subscribe-form form {
+        flex-direction: column;
+      }
+
+      .subscribe-form button {
+        width: 100%;
+      }
+
+      .footer-note {
+        position: relative;
+        bottom: auto;
+        margin-top: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section id="home">
+    <div class="overlay"></div>
+
+    <div class="container">
+      <div class="hero-wrap">
+
+        <div class="brand-badge">StratMindCore · Beta Launch Coming Soon</div>
+
+        <h1>
+          Find better trade setups with a <span class="highlight">scanner-first</span> workflow.
+        </h1>
+
+        <p class="subtitle">
+          StratMindCore helps traders discover scanner-based stock ideas, maintain a trading journal,
+          and track compounding goals — so every trade becomes part of a clear plan.
+        </p>
+
+        <ul class="features">
+          <li>Weekly & Daily Scanners</li>
+          <li>Trading Journal</li>
+          <li>Compounding Tracker</li>
+          <li>Performance Insights</li>
+        </ul>
+
+        <p class="small-note">
+          Limited beta access for early users. Built for retail traders who want structure, not random trades.
+        </p>
+
+        <div class="stats">
+          <div class="stat-card">
+            <strong>Scanner</strong>
+            <span>Spot market setups faster</span>
+          </div>
+
+          <div class="stat-card">
+            <strong>Journal</strong>
+            <span>Track mistakes and wins</span>
+          </div>
+
+          <div class="stat-card">
+            <strong>Plan</strong>
+            <span>Know your compounding path</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-note">
+        © 2026 StratMindCore. Educational tools only. Not investment advice.
+      </div>
+    </div>
+  </section>
+</body>
+</html>
